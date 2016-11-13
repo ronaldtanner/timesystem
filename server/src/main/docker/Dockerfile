@@ -4,8 +4,9 @@ MAINTAINER tar@semafor.ch
 VOLUME /tmp
 #
 ADD  timesystem-server.jar app.jar
-# set modification date
-RUN sh -c 'touch /app.jar'
+# create user and set modification date
+RUN useradd -r tomcat && sh -c 'touch /app.jar' && chown tomcat /app.jar
+USER tomcat
 # reduce tomcat startup 
 ENTRYPOINT ["java", \
   "-Djava.security.egd=file:/dev/./urandom", \
