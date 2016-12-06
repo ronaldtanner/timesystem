@@ -16,7 +16,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 						// @ComponentScan
 @EnableScheduling 
 public class TimeClient {
-	@Value(value = "${timeserver}")
+	@Value(value = "${TIMESERVER}")
 	String timeserver;
 	
 	@Bean
