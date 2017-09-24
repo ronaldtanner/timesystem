@@ -3,7 +3,7 @@ MAINTAINER tar@semafor.ch
 # set environment variable
 ENV timeserver timeserver
 #
-ADD  timesystem-client.jar app.jar
+ADD  target/timesystem-client.jar app.jar
 # create user and set modification date
 RUN useradd -r default && sh -c 'touch /app.jar'
 # 
