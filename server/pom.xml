@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.example</groupId>
     <artifactId>timesystem</artifactId>
-    <version>1.0</version>
+    <version>1.2</version>
   </parent>
   <groupId>org.example.timesystem</groupId>
   <artifactId>timesystem-server</artifactId>
@@ -29,25 +29,15 @@
 
       <plugin> <!-- create docker image -->
 	<groupId>com.spotify</groupId>
-	<artifactId>docker-maven-plugin</artifactId>
-	<version>0.4.11</version>
+	<artifactId>dockerfile-maven-plugin</artifactId>
+	<version>1.3.6</version>
 	  <executions>
 	    <execution>
-	      <id>build-image</id>
-	      <phase>package</phase>
+	      <id>default</id>
 	      <goals>
 		<goal>build</goal>
+		<goal>push</goal>
 	      </goals>
-	      <configuration>
-		<imageName>${owner}/${project.artifactId}:${project.version}</imageName>
-		<dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
-		<resources>
-		  <resource>
-		    <directory>${project.build.directory}</directory>
-		    <include>${project.build.finalName}.jar</include>
-		  </resource>
-		</resources> 
-	      </configuration>
 	    </execution>
 	  <execution>
 	    <id>tag-image</id>
@@ -55,14 +45,13 @@
 	    <goals>
 	      <goal>tag</goal>
 	    </goals>
-	    <configuration>
-	      <image>${owner}/${project.artifactId}:${project.version}</image>
-	      <newName>${owner}/${project.artifactId}:latest</newName>
-	      <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
-	    </configuration>
-	  </execution>
+  	  </execution>
 	  </executions>
-      </plugin>
+  	  <configuration>
+	    <repository>ronaldtanner/${project.artifactId}</repository>
+	    <tag>${project.version}</tag>
+	  </configuration>
+    </plugin>
 
     </plugins>
   </build>
