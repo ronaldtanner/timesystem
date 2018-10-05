@@ -16,7 +16,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 						// @ComponentScan
 @EnableScheduling 
 public class TimeClient {
-	@Value(value = "${timeserver}")
+	@Value(value = "${timeserver:localhost}")
 	String timeserver;
 	
 	@Bean
@@ -30,7 +30,7 @@ public class TimeClient {
 	@Scheduled(fixedRate=5000)
 	public void printTime() {
 		try {
-			System.out.println(timeRequester.getResponse());
+			System.out.print(timeRequester.getResponse());
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

@@ -1,7 +1,5 @@
 FROM openjdk:8-jre
-MAINTAINER tar@semafor.ch
-# set environment variable
-ENV timeserver timeserver
+LABEL maintainer=tar@semafor.ch
 #
 ADD  target/timesystem-client.jar app.jar
 # create user and set modification date

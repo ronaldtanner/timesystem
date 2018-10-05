@@ -1,12 +1,11 @@
-version: '2'
+version: '3'
 services:
-  server:
+  timeserver:
     image: ronaldtanner/timesystem-server:latest
     volumes:
       - "./tmp:/tmp"
   client:
     image: ronaldtanner/timesystem-client:latest
-    links:
-      - server
-    environment:
-      timeserver: server
+    depends_on:
+      - timeserver
+    command: "--timeserver=timeserver"
