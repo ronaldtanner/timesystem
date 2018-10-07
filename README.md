@@ -9,6 +9,11 @@ Both docker images are build by running the command in the project root director
 
   $ mvn package
 
+
+Create the tmp directory with permissions to everyone: 
+
+  mkdir -m=777 tmp
+
 Start the timesystem either with
  
  docker-compose up -d
