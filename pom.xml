@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.example</groupId>
   <artifactId>timesystem</artifactId>
-  <version>1.3-snapshot</version>
+  <version>1.4-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Dockerized Time System Application</name>
   
