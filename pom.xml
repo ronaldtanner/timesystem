@@ -18,6 +18,12 @@
     <owner>ronaldtanner</owner>
   </properties>
       
+  <scm>
+    <developerConnection>
+      scm:git:https://ronaldtanner@github.com/ronaldtanner/timesystem.git
+    </developerConnection>
+  </scm>
+
   <modules>
     <module>server</module>
     <module>client</module>
