@@ -11,7 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 public class TimeServlet extends javax.servlet.http.HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+	public void doGet(
+	    HttpServletRequest request, 
+	    HttpServletResponse response) 
+	        throws IOException, ServletException {
 		response.setContentType("text/plain");
 		java.io.PrintWriter out = response.getWriter();
 		String host = InetAddress.getLocalHost().getCanonicalHostName();
