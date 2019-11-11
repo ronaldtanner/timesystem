@@ -17,7 +17,10 @@ public class TimeServlet extends javax.servlet.http.HttpServlet {
 		String host = InetAddress.getLocalHost().getCanonicalHostName();
 		String ipaddr = InetAddress.getLocalHost().getHostAddress();
 		ZonedDateTime now = ZonedDateTime.now();
-		out.println(host + ":" + ipaddr +":" + now.toString() + ":" + request.getRemoteAddr());
+		out.println(host + ":" + 
+		    ipaddr +":" + 
+		    now.toString() + ":" + 
+		    request.getRemoteAddr());
 	}
 
 }
