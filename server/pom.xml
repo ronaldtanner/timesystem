@@ -1,52 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>org.example</groupId>
-		<artifactId>timesystem</artifactId>
-		<version>1.5-SNAPSHOT</version>
-	</parent>
-	<groupId>org.example.timesystem</groupId>
-	<artifactId>timesystem-server</artifactId>
+  <parent>
+    <groupId>org.example</groupId>
+    <artifactId>timesystem</artifactId>
+    <version>1.5-SNAPSHOT</version>
+  </parent>
+  
+  <groupId>org.example.timesystem</groupId>
+  <artifactId>timesystem-server</artifactId>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-	</dependencies>
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+  </dependencies>
 
 
-	<build>
-		<finalName>${project.artifactId}</finalName>
-		<plugins>
-			<plugin> <!--collect all the jars on the classpath and build a single, runnable "über-jar" -->
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+  <build>
+    <finalName>${project.artifactId}</finalName>
+    <plugins>
+      <plugin> <!--collect all the jars on the classpath and build a single, runnable "über-jar" -->
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-maven-plugin</artifactId>
+	<configuration>
+	  <image>
+	    <name>ronaldtanner/${project.artifactId}:${project.version}</name>
+	  </image>
+	</configuration>
+      </plugin>
 
-			<plugin> <!-- create docker image -->
-				<groupId>com.spotify</groupId>
-				<artifactId>dockerfile-maven-plugin</artifactId>
-				<version>1.4.5</version>
-				<executions>
-					<execution>
-						<id>default</id>
-						<goals>
-							<goal>build</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<repository>ronaldtanner/${project.artifactId}</repository>
-					<tag>${project.version}</tag>
-				</configuration>
-			</plugin>
-
-		</plugins>
-	</build>
+    </plugins>
+  </build>
 
 </project>
