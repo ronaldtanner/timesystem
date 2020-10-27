@@ -1,13 +1,11 @@
-FROM openjdk:8
+FROM openjdk:11.0.8-jre-slim
 LABEL maintainer=tar@semafor.ch
 #
 ADD target/timesystem-server.jar app.jar
 # create user and set modification date
-RUN useradd -r tomcat && sh -c 'touch /app.jar' && chown tomcat /app.jar
+RUN groupadd -r tomcat && useradd -r -g tomcat tomcat && \
+  sh -c 'touch /app.jar' && chown tomcat:tomcat /app.jar
 USER tomcat
 # working directory for tomcat
 VOLUME /tmp
-# reduce tomcat startup 
-ENTRYPOINT ["java", \
-  "-Djava.security.egd=file:/dev/./urandom", \
-  "-jar","/app.jar"]
+ENTRYPOINT ["java", "-jar", "/app.jar"]
